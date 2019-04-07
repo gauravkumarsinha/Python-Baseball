@@ -3,7 +3,7 @@ import glob
 
 import pandas as pd
 
-game_files = glob.glob(os.path.join(os.getcwd(), 'games', '*.EVE'))
+game_files = glob.glob(os.path.join(os.getcwd(), '/Users/dvoper/Documents/GitHub/Python-Baseball/games', '*.EVE'))
 game_files.sort()
 
 game_frames = []
@@ -19,8 +19,8 @@ identifiers = games['multi2'].str.extract(r'(.LS(\d{4})\d{5})')
 identifiers = identifiers.fillna(method='ffill')
 identifiers.columns = ['game_id', 'year']
 
-games = pd.concat([games, identifiers], sort=False, axis=1)
+games = pd.concat([games, identifiers], axis=1,sort=False)
 games = games.fillna(' ')
 games.loc[:, 'type'] = pd.Categorical(games.loc[:, 'type'])
 
-print(games.head());
+print(games.head())
